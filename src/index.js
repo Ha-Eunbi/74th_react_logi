@@ -14,7 +14,7 @@ import { ConfigProvider } from 'template/contexts/ConfigContext';
 
 // style + assets
 import 'assets/scss/style.scss';
-
+//namu 깃 확인
 //리덕스, 사가
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
