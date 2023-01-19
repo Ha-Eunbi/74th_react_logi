@@ -19,7 +19,7 @@ import 'assets/scss/style.scss';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-
+//동환쓰 확인
 // ==============================|| REACT DOM RENDER  ||============================== //
 
 ReactDOM.render(
