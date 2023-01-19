@@ -2,7 +2,7 @@ import axios from 'api/logiApi';  //'http://localhost:8282/logi'
 import axios2 from 'api/hrApi'; // 'http://localhost:8282/hr'   // 옛날 통합 API 버전
 import axios3 from 'api/MSAApi' // 'http://localhost:9102       // MSA 단위로 변경중
 
-
+// 깃 확인
 export const warehouseInfo = () =>
     // axios.get('/base/warehouseInfo');
     axios.get('/logiinfo/warehouse/list');
@@ -18,17 +18,17 @@ export const saveWarehouseInfo = (action) =>
 
 
 //품목상세
-export const searchItemInfoDetail=(action)=>axios.get("logiinfo/item/info-list", {
-    params : {
-        "ableContractInfo":{"itemGroupCode":action.payload.itemGroupCode}
+export const searchItemInfoDetail = (action) => axios.get("logiinfo/item/info-list", {
+    params: {
+        "ableContractInfo": { "itemGroupCode": action.payload.itemGroupCode }
     }
 })
 
 
 //자재조회
-export const warehouseDetail = (action)=>axios.get('/stock/sto/warehousestocklist', {
-    params : {
-        warehouseCode : action.payload.warehouseCode
+export const warehouseDetail = (action) => axios.get('/stock/sto/warehousestocklist', {
+    params: {
+        warehouseCode: action.payload.warehouseCode
     }
 });
 
@@ -58,16 +58,16 @@ export const searchItemB =
     })
 
 //코드조회
-export const itemList=()=>
+export const itemList = () =>
     axios.get('/logiinfo/item/group-list')
 
 
 //코드상세
 export const codeDetailList = (action) => axios.get('/compinfo/codedetail/list', {
-    params : {
-        divisionCodeNo : action.payload.divisionCodeNo
+    params: {
+        divisionCodeNo: action.payload.divisionCodeNo
     }
- })
+})
 
 export const searchList =
     divisionCode => axios.get('/base/codeList', {
@@ -126,13 +126,13 @@ export const searchAllList =
         }
     })
 
-export const searchItem = async (divisionCode,setList,props,minPrice,maxPrice) => {
+export const searchItem = async (divisionCode, setList, props, minPrice, maxPrice) => {
     if (divisionCode !== 'standardUnitPrice' || '') {
         await axios.get('/base/codeList', {
             params: {
                 divisionCode: divisionCode
             }
-        }).then(function(respones) {
+        }).then(function (respones) {
             setList(respones.data.detailCodeList);
         });
     }
@@ -145,7 +145,7 @@ export const searchItem = async (divisionCode,setList,props,minPrice,maxPrice) =
                 minPrice: minPrice + '',
                 maxPrice: maxPrice + ''
             }
-        }).then(function(respones) {
+        }).then(function (respones) {
             props.list(respones.data.gridRowJson);
             props.close();
         });
@@ -159,7 +159,7 @@ export const searchItem = async (divisionCode,setList,props,minPrice,maxPrice) =
                 minPrice: '',
                 maxPrice: ''
             }
-        }).then(function(respones) {
+        }).then(function (respones) {
             props.list(respones.data.gridRowJson);
             props.close();
         });
@@ -168,7 +168,7 @@ export const searchItem = async (divisionCode,setList,props,minPrice,maxPrice) =
 
 
 /****************** 사업장 정보 *********************/
-export const workplaceInfo = () =>{
+export const workplaceInfo = () => {
     return axios3.get('/compinfo/workplace/list', {
         params: {
             companyCode: 'COM-01'
@@ -188,7 +188,8 @@ export const saveWorkplace = action => {
 export const searchClient = action =>
     axios3.get('/compinfo/customer/list',
 
-        { params: {
+        {
+            params: {
                 searchCondition: action.payload.searchCondition,
                 workplaceCode: action.payload.workplaceCode,
                 companyCode: action.payload.companyCode,
@@ -206,7 +207,8 @@ export const saveClient = action =>
 export const searchFinan = action =>
     axios3.get('/compinfo/financialaccountassociates/list',
 
-        { params: {
+        {
+            params: {
                 searchCondition: action.payload.searchCondition,
                 workplaceCode: action.payload.workplaceCode
             }
