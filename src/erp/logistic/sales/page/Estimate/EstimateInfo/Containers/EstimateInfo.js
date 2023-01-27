@@ -18,6 +18,7 @@ import useAsync from 'util/useAsync';
 import MainCard from "template/ui-component/cards/MainCard";
 import { getDatePicker } from "util/LogiUtil/DatePicker";
 import MyDialog from "../../../../../../../util/LogiUtil/MyDialog";
+import moment from "moment";
 
 const EstimateInfo= () => {
     const today = Moment().format('YYYY-MM-DD');
@@ -256,7 +257,7 @@ const EstimateInfo= () => {
     },[estimateNo]);
 
       const csvLinkEl = useRef(null);
-
+      let toDay = moment(new Date()).format('yyyy-MM-DD'); //TextField 종료일에 쓰일 변수. 23-01-26 하은비 수정
     return (
         <>
             <div>
@@ -284,7 +285,7 @@ const EstimateInfo= () => {
                     label="종료일"
                     onChange={onChangeDate}
                     type={"date"}
-                    defaultValue="2020-12-03"
+                    defaultValue={toDay} //종료일 String값(2020-12-03)에서 오늘 날짜로 바꿈.  23-01-26 하은비 수정
                 
                     />
 
@@ -292,7 +293,7 @@ const EstimateInfo= () => {
                     variant="contained"
                     color="secondary"
                     onClick={downloadReport}
-                    style={{ marginRight: '1vh' }}>Export to CSV (Async)</Button>
+                    style={{ marginRight: '1vh' }}>견적서 다운로드</Button>
         <CSVLink
           headers={headers}
           filename="Clue_Mediator_Report_Async.csv"
