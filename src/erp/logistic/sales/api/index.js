@@ -9,7 +9,7 @@ export const downloadReport = (param) => {
 
 export const searchEstimate =
     async param => {
-      
+
         const result = await axios.get("/logisales/estimate/list", {
             params: param
         });
@@ -39,16 +39,16 @@ export const searchItemCode =
 
 export const saveEstimateRow =
     async param => {
-        console.log("sssssssssssss"+JSON.stringify(param));
+        console.log("sssssssssssss" + JSON.stringify(param));
         const result = await axios.post(
             '/logisales/estimate/new', {
-                estimateDate: param.estimateDate,
-                newEstimateInfo: param
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+            estimateDate: param.estimateDate,
+            newEstimateInfo: param
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
             }
+        }
         )
         return result.data;
     }
@@ -64,11 +64,14 @@ export const searchCustomer =
         return result.data;
     }
 
+//==============은비 나무 견적등록/품목코드조회 구현하기=================== +월요일 해야할 것. 단가도 가져오기.//
 export const searchItem =
     async () => {
         const result = await axios.get('/compinfo/codedetail/list', {
+       // const result = await axios.get('/logiinfo/item/group-list', {
             params: {
-                divisionCode: 'IT-_I'
+                divisionCodeNo: 'IT-GROUP'
+                //ableContractInfo: 'AF10'
             }
         })
         return result.data;
@@ -88,9 +91,9 @@ export const searchDetailList =
 export const searchContractList =
     async (param) => {
         const result = await axios.get('/logisales/contract/list'
-            , { params:param}
-            , {withCredentials:true}
-            )
+            , { params: param }
+            , { withCredentials: true }
+        )
         console.log(result.data)
         return result.data;
     }
@@ -109,7 +112,7 @@ export const addContract =
             batchList: param.batchList,
             contractDate: param.contractDate,
             personCodeInCharge: param.personCodeInCharge
-        } )
+        })
         return result.data;
     }
 
@@ -117,7 +120,7 @@ export const searchContractType =
     async () => {
         const result = await axios.get('/compinfo/codedetail/list', {
             params: {
-                divisionCode: 'CT'
+                divisionCodeNo: 'CT'
             }
         })
         console.log(result.data);
@@ -128,17 +131,17 @@ export const searchDialogCustomer =
     async () => {
         const result = await axios.get('/compinfo/codedetail/list', {
             params: {
-                divisionCode: 'CL-01'
+                divisionCodeNo: 'CL-01'
             }
-        }, {withCredentials:true})
+        }, { withCredentials: true })
         console.log(result.data)
         return result.data;
     }
 
-    export function contractDetailListInMpsAvailable(param) {
-        return axios.get("http://localhost:8284/production/mps/contractdetail-available", {
-            batchList: param.searchCondition,
-            contractDate: param.startDate,
-            personCodeInCharge: param.endDate
-        })
+export function contractDetailListInMpsAvailable(param) {
+    return axios.get("http://localhost:8284/production/mps/contractdetail-available", {
+        batchList: param.searchCondition,
+        contractDate: param.startDate,
+        personCodeInCharge: param.endDate
+    })
 }

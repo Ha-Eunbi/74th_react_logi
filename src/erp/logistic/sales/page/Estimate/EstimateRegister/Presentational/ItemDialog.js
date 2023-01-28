@@ -37,7 +37,7 @@ const ItemDialog = props => {
     return (
         <MainCard
         content={false}
-        title="품목명 검색"
+        title="품목코드 검색"
         >
         <MyGrid
             style={{ height: '10vh' }}
